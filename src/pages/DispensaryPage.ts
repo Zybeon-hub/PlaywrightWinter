@@ -48,27 +48,31 @@ export default class DispensaryPage {
     };
   }
 
- /**
- * @Test1 Verify tooltip text when hovering over the dispensary pointer icon.
- *
- * @returns {Promise<string>} - Returns the trimmed tooltip text; throws an error if the tooltip text does not match the expected value.
- *
- * Steps:
- * 1. Click on the Dispensary link to open the dispensary section.
- * 2. Hover over the right-pointing icon to trigger the tooltip.
- * 3. Capture the tooltip text displayed.
- * 4. Verify that the tooltip text matches the expected message:
- *    "You are currently in Main Dispensary dispensary. To change, you can always click here."
- * 5. Return the actual tooltip text.
- */
+  /**
+  * @Test1 Verify tooltip text when hovering over the dispensary pointer icon.
+  *
+  * @returns {Promise<string>} - Returns the trimmed tooltip text; throws an error if the tooltip text does not match the expected value.
+  *
+  * Steps:
+  * 1. Click on the Dispensary link to open the dispensary section.
+  * 2. Hover over the right-pointing icon to trigger the tooltip.
+  * 3. Capture the tooltip text displayed.
+  * 4. Verify that the tooltip text matches the expected message:
+  *    "You are currently in Main Dispensary dispensary. To change, you can always click here."
+  * 5. Return the actual tooltip text.
+  */
 
   async verifyAndReturnDispensaryTooltipText(): Promise<string> {
-
+    const counter = await this.page.locator("//a[text()='X']");
+    if (counter) {
+      await counter.click();
+    }
+    await this.dispensary.dispensaryLink.click();
     await this.dispensary.dispensaryLink.click();
     await this.page.locator('a').filter({ hasText: 'Main Dispensarydispensary' }).click();
-    await this.page.locator("//label[text()=' Active Dispensary : ']").hover();
-    const text =await this.page.getByText('You are currently in Main Dispensary dispensary. To change, you can always click here.').innerText();
-    
+    await this.page.locator("//label[text()=' Active Dispensary : ']/../i").hover();
+    const text = await this.page.getByText('You are currently in Main Dispensary dispensary. To change, you can always click here.').innerText();
+
     return text;
   }
 }

@@ -30,7 +30,7 @@ export default class ADTPage {
       searchbar: page.locator(""),
       elipsis: page.locator("//button[@class='dropdown-toggle grid-btnCstm']"),
       change_doctor: page.locator("//a[@danphe-grid-action='changedr']"),
-      update_button: page.getByText("Update").nth(1),
+      update_button: page.locator("//button[text()='Update']"),
       select_doctor_error: page.locator(""),
       first_counter: page.getByText("New-1 "),
     };
@@ -52,7 +52,10 @@ export default class ADTPage {
    */
 
   async verifyInventorySubModuleNavigation() {
-
+    const counter = await this.page.locator("//a[text()='X']");
+    if (counter) {
+      await counter.click();
+    }
     await this.ADT.ADTLink.click();
     await this.ADT.first_counter.click();
     await this.ADT.admittedPatient.click();

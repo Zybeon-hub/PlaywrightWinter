@@ -36,6 +36,10 @@ export default class PharmacyPage {
    */
 
   async verifyExportOrderSectionData() {
+    const counter = await this.page.locator("//a[text()='X']");
+    if (counter) {
+      await counter.click();
+    }
     await this.pharmacy.click()
     await this.order.click()
 

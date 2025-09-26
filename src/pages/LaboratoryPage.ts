@@ -13,7 +13,7 @@ export default class LaboratoryPage {
   private select_dropdown: Locator;
   private start_with_option: Locator;
   private req_dept_search: Locator;
-  
+
   constructor(page: Page) {
     this.page = page;
     this.laboratoryLink = page.getByRole('link', { name: 'Laboratory ' });
@@ -42,14 +42,17 @@ export default class LaboratoryPage {
    */
 
   async verifyTableFiltering() {
-
+    const counter = await this.page.locator("//a[text()='X']");
+    if (counter) {
+      await counter.click();
+    }
     await this.laboratoryLink.click();
     await this.sampleCollectionTab.click();
     await this.from_date.fill('2020-01-01');
     await this.ok_button.click();
     await this.requestdept_hamburger.hover();
     await this.requestdept_hamburger.click();
-    await this.select_dropdown.selectOption({index: 2});
+    await this.select_dropdown.selectOption({ index: 2 });
     await this.req_dept_search.fill('Male Ward')
   }
 }

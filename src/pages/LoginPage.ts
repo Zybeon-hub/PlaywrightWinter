@@ -1,7 +1,7 @@
 import { test, Locator, Page } from '@playwright/test'
 
 export class LoginPage {
-  
+
   readonly page: Page;
   private usernameInput: Locator;
   private passwordInput: Locator;
@@ -31,7 +31,7 @@ export class LoginPage {
 
   async performLogin(loginData: Record<string, string>) {
 
-     await this.page.goto('https://healthapp.yaksha.com/')
+    await this.page.goto('https://healthapp.yaksha.com/')
 
     await this.usernameInput.fill(loginData['ValidUserName']);
 

@@ -8,8 +8,8 @@ export default class MaternityPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.maternity= page.getByRole('link', { name: 'Maternity ' }),
-    this.starIcon = page.getByTitle('Remember this Date');
+    this.maternity = page.locator('//a[@href="#/Maternity"]'),
+      this.starIcon = page.getByTitle('Remember this Date');
   }
 
   /**
@@ -21,15 +21,14 @@ export default class MaternityPage {
    * Finally, it captures and returns the value of the 'title' attribute, which holds the tooltip text.
    */
   async getTooltipTextFromStar(): Promise<string | null> {
-     await this.maternity.click();
-    await this.starIcon.hover();
 
-    // await expect(this.starIcon);
+    // await this.maternity.click();
+    // await this.starIcon.hover();
+    // await this.page.waitForTimeout(4000)
+    // const tooltipText = await this.page.locator('//*[contains(text(),"Remember this Date")]').textContent();
 
-    // Retrieve and log the tooltip text
-    const tooltipText = await this.starIcon.innerText();
-    console.log('Tooltip Text:', tooltipText);
+    // console.log('Tooltip Text:eweeeeeeeeeeeeeeeeeeeeeeeeeeeee', tooltipText);
 
-    return null;
+    return "";
   }
 }

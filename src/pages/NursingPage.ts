@@ -26,7 +26,7 @@ export default class NursingPage {
     this.ok_button = page.locator('//button[text()=" OK "]');
     this.search_field = page.locator('#quickFilterInput');
     this.overview_button = page.getByTitle('overview').first();
-    this.upload_button = page.getByTitle('file').first();
+    this.upload_button = page.locator('//input[@type="file"]');
     this.dept_dropdown = page.locator("//select[@formcontrolname='FileType']");
     this.upload_file = page.getByTitle('upload files').first();
     this.submit_button = page.locator('//input[@value="Submit"]');
@@ -51,6 +51,10 @@ export default class NursingPage {
 
   async verifyPatientOverviewFromPastDaysRecords(): Promise<void> {
 
+    const counter = await this.page.locator("//a[text()='X']");
+    if (counter) {
+      await counter.click();
+    }
     await this.nursing_tab.click();
     await this.past_days.click();
     await this.from_date.fill("2020-01-01");
@@ -80,7 +84,10 @@ export default class NursingPage {
    * 9. Click on the Submit button.
    */
   async verifyfileupload() {
-
+const counter = await this.page.locator("//a[text()='X']");
+    if (counter) {
+      await counter.click();
+    }
     await this.nursing_tab.click();
     await this.page.waitForTimeout(2000)
     await this.past_days.click();
@@ -89,6 +96,7 @@ export default class NursingPage {
     await this.search_field.click();
     await this.page.keyboard.insertText('Deep')
     await this.page.keyboard.press('Enter')
+    await this.upload_file.click();
     await this.upload_button.setInputFiles('inventoryRequisition.png');
     await this.dept_dropdown.selectOption({ value: 'Pathology' });
     await this.upload_button.click();

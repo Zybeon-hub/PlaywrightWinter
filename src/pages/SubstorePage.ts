@@ -17,12 +17,12 @@ export default class SubstorePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.subStoreLink = page.locator('');
+    this.subStoreLink = page.locator('//span[text()="SubStore"]');
     this.wardSupply = page.locator('');
-    this.accounts = page.locator('');
-    this.pharmacy = page.locator('');
-    this.inventory = page.locator('');
-    this.inventoryRequisition = page.locator('');
+    this.accounts = page.locator('//i[text()="Accounts"]/..');
+    this.pharmacy = page.locator('//a[text()=" Pharmacy "]/..');
+    this.inventory = page.locator('//a[text()=" Inventory "]/..');
+    this.inventoryRequisition = page.locator('//a[text()="Inventory Requisition"]/..');
     this.consumption = page.locator('');
     this.reports = page.locator('');
     this.patientConsumption = page.locator('');
@@ -32,11 +32,11 @@ export default class SubstorePage {
 
   // Getter methods to access private properties
   public getPharmacy() {
-    return this.page.locator("");
+    return this.page.locator('//a[text()=" Pharmacy "]/..');
   }
 
   public getInventory() {
-    return this.page.locator("");
+    return this.page.locator('//a[text()=" Inventory "]/..');
   }
 
   public getAccounts() {
@@ -55,8 +55,14 @@ export default class SubstorePage {
    * and interacted with, ensuring the functionality of the Ward Supply section.
    */
   async verifySubModulesDisplay() {
-
-    
+    const counter = await this.page.locator("//a[text()='X']");
+    if (counter) {
+      await counter.click();
+    }
+    await this.subStoreLink.click();
+    await this.accounts.click();
+    await this.inventory.click();
+    await this.pharmacy.click();
   }
 
   /**
@@ -194,6 +200,20 @@ export default class SubstorePage {
    * - Screenshot of the page is captured and saved successfully in the specified folder.
    */
   async captureScreenshotOfInventoryRequisitionSection() {
+    const counter = await this.page.locator("//a[text()='X']");
+    if (counter) {
+      await counter.click();
+    }
+    await this.subStoreLink.click();
+    await this.accounts.click();
+    await this.inventory.click()
+    await this.inventoryRequisition.click();
+
+    const folder = 'screenshots';
+    const filepath = `${folder}/${'inventory_requisition_section.png'}`;
+    await this.page.screenshot({ path: filepath, fullPage: true });
+    // return filepath;
+    console.log("aaaaaaaaaaaaaaaaa", filepath);
     return Buffer.alloc(0);
   }
 }
