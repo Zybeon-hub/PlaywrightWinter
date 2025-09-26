@@ -63,6 +63,12 @@ export default class DispensaryPage {
  */
 
   async verifyAndReturnDispensaryTooltipText(): Promise<string> {
-    return '';
+
+    await this.dispensary.dispensaryLink.click();
+    await this.page.locator('a').filter({ hasText: 'Main Dispensarydispensary' }).click();
+    await this.page.locator("//label[text()=' Active Dispensary : ']").hover();
+    const text =await this.page.getByText('You are currently in Main Dispensary dispensary. To change, you can always click here.').innerText();
+    
+    return text;
   }
 }

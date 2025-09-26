@@ -17,14 +17,14 @@ export default class UtilitiesPage {
   constructor(page: Page) {
     this.page = page;
     this.utilities = {
-      utilitiesModule: page.locator(""),
+      utilitiesModule: page.getByRole('link', { name: 'Utilities ' }),
       ChangeBillingCounter: page.locator(''),
       counters: page.locator(""),
-      counterItem: page.locator(""),
-      schemeRefund: page.locator('').nth(1),
-      newSchemeRefundEntry: page.locator(""),
-      saveButton: page.locator(''),
-      warningPopup: page.locator(""),
+      counterItem: page.getByText("New-1 "),
+      schemeRefund: page.locator('//a[text()=" Scheme Refund "]'),
+      newSchemeRefundEntry: page.locator("//a[text()=' New Scheme Refund Entry']"),
+      saveButton: page.locator('#savebutton'),
+      warningPopup: page.locator('//p[text()="Please fill all the mandatory fields."]'),
     };
   }
 
@@ -50,5 +50,13 @@ export default class UtilitiesPage {
    */
 
   async verifyWarningPopupForMandatoryFiels() {
+
+    await this.utilities.utilitiesModule.click();
+    await this.utilities.schemeRefund.click();
+    await this.utilities.counterItem.click();
+    await this.utilities.schemeRefund.click();
+    await this.utilities.newSchemeRefundEntry.click();
+    await this.utilities.saveButton.click();
+    
   }
 }

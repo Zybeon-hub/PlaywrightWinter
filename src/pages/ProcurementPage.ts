@@ -20,19 +20,19 @@ export default class ProcurementPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.procurement = page.locator('');
-    this.quotations = page.locator(``);
-    this.requestForQuotation = page.locator(``);
-    this.subject = page.locator(``);
-    this.description = page.locator(``);
-    this.selectVendor = page.locator(``);
+    this.procurement = page.getByRole('link', { name: 'Procurement ' });
+    this.quotations = page.getByRole('link', { name: 'Quotation' });
+    this.requestForQuotation = page.getByRole('button', { name: 'Request For Quotation' });
+    this.subject = page.getByRole('textbox', { name: 'Subject' });
+    this.description = page.getByRole('textbox', { name: 'Description' });
+    this.selectVendor = page.getByText('---Select Vendor---');
     this.dropdownOption = page.locator(``);
-    this.itemName = page.locator(``);
+    this.itemName = page.locator(`#itemName0`);
     this.itemValue = page.locator(``);
     this.dropdownArrowButton = page.locator(``);
-    this.quantity = page.locator(``);
-    this.requestButton = page.locator(``);
-    this.quotationGeneratedPopup = page.locator(``);
+    this.quantity = page.locator(`#qtyip0`);
+    this.requestButton = page.locator(`#RequestButton`);
+    this.quotationGeneratedPopup = page.locator(`//p[text()='Request For Quotation is Generated and Saved']`);
   }
 
   /**
@@ -50,5 +50,21 @@ export default class ProcurementPage {
    * before interaction, helping ensure that the process completes smoothly.
    */
   async verifyRequestForQuotationGeneration() {
+
+    await this.procurement.click()
+    await this.quotations.click()
+    await this.requestForQuotation.click()
+    await this.subject.fill('test subject')
+    await this.description.fill('test description')
+    await this.selectVendor.click();
+    await this.page.getByPlaceholder('Search').fill('Ashar & Company');
+    await this.page.getByText('Ashar & Company').click();
+    await this.itemName.fill('Soap');
+    await this.page.keyboard.press('Enter');
+    await this.quantity.fill('2');
+    await this.requestButton.click();
+    await this.quotationGeneratedPopup.innerText();
+    this.quotationMessageText = await this.quotationGeneratedPopup.innerText();
+
   }
 }

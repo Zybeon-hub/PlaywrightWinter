@@ -1,5 +1,5 @@
 import { test, Locator, Page } from '@playwright/test'
-
+import testData from '../Data/PatientName.json'
 export default class ADTPage {
 
   readonly page: Page;
@@ -21,18 +21,18 @@ export default class ADTPage {
   constructor(page: Page) {
     this.page = page;
     this.ADT = {
-      ADTLink: page.locator(''),
-      searchBar: page.locator(""),
+      ADTLink: page.locator('//a[@href="#/ADTMain"]'),
+      searchBar: page.locator("#quickFilterInput"),
       hospitalSearchBar: page.locator(""),
       patientName: page.locator(""),
       patientCode: page.locator(""),
-      admittedPatient: page.locator(""),
+      admittedPatient: page.locator(" //a[text()=' Admitted Patients ']"),
       searchbar: page.locator(""),
-      elipsis: page.locator("("),
-      change_doctor: page.locator(""),
-      update_button: page.locator(""),
+      elipsis: page.locator("//button[@class='dropdown-toggle grid-btnCstm']"),
+      change_doctor: page.locator("//a[@danphe-grid-action='changedr']"),
+      update_button: page.getByText("Update").nth(1),
       select_doctor_error: page.locator(""),
-      first_counter: page.locator(""),
+      first_counter: page.getByText("New-1 "),
     };
   }
 
@@ -52,5 +52,15 @@ export default class ADTPage {
    */
 
   async verifyInventorySubModuleNavigation() {
+
+    await this.ADT.ADTLink.click();
+    await this.ADT.first_counter.click();
+    await this.ADT.admittedPatient.click();
+    await this.ADT.searchBar.fill(testData['patientName'])
+    await this.ADT.searchBar.click();
+    await this.page.keyboard.press('Enter');
+    await this.ADT.elipsis.click();
+    await this.ADT.change_doctor.click();
+    await this.ADT.update_button.click();
   }
 }

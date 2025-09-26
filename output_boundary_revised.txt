@@ -1,6 +1,1 @@
 ts-1VerifyTheDispensarySignoutButtonHasATooltip=false
-ts-2VerifyNavigateToPatientOverviewFromPastDaysRecords=false
-ts-3VerifyFileUploadForAPastPatientRecord=false
-ts-4VerifyActivationOfBankA/c#Ledger=true
-ts-5VerifyDeactivationOfBankA/c#Ledger=false
-ts-6VerifyAllSub-modulesAreDisplayedCorrectlyAfterClickingOnTheSubstoreModule=false

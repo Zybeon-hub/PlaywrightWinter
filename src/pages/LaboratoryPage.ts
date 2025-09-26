@@ -16,16 +16,16 @@ export default class LaboratoryPage {
   
   constructor(page: Page) {
     this.page = page;
-    this.laboratoryLink = page.locator('');
+    this.laboratoryLink = page.getByRole('link', { name: 'Laboratory ' });
     this.laboratoryDashboard = page.locator('');
-    this.sampleCollectionTab = page.locator('');
-    this.from_date = page.locator("");
-    this.ok_button = page.locator('');
+    this.sampleCollectionTab = page.locator('//a[@href="#/Lab/Requisition"]').nth(1);
+    this.from_date = page.locator("#date").nth(0);
+    this.ok_button = page.locator('//button[text()=" OK "]');
     this.col_requestingDept = page.locator('');
-    this.requestdept_hamburger = page.locator("");
-    this.select_dropdown = page.locator("");
+    this.requestdept_hamburger = page.locator("//span[text()='Requisition Date']/../../span");
+    this.select_dropdown = page.locator("#filterType");
     this.start_with_option = page.locator("");
-    this.req_dept_search = page.locator("");
+    this.req_dept_search = page.locator("#filterText");
   }
 
   /**
@@ -42,5 +42,14 @@ export default class LaboratoryPage {
    */
 
   async verifyTableFiltering() {
+
+    await this.laboratoryLink.click();
+    await this.sampleCollectionTab.click();
+    await this.from_date.fill('2020-01-01');
+    await this.ok_button.click();
+    await this.requestdept_hamburger.hover();
+    await this.requestdept_hamburger.click();
+    await this.select_dropdown.selectOption({index: 2});
+    await this.req_dept_search.fill('Male Ward')
   }
 }

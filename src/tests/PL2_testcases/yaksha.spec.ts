@@ -57,7 +57,7 @@ test.describe("Yaksha", () => {
 
   // Individual test cases
 
-  test("TS-1 Verify the dispensary signout button has a ToolTip", async ({
+  test.only("TS-1 Verify the dispensary signout button has a ToolTip", async ({
     page,
   }) => {
     const tooltipText =

@@ -11,11 +11,11 @@ export class SettingsPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.settingsLink = page.locator('');
-    this.more = page.locator('');
-    this.disable = page.locator('');
-    this.activate = page.locator('');
-    this.priceCategory = page.locator('');
+    this.settingsLink = page.getByRole('link', { name: 'Settings ' });
+    this.more = page.locator('//a[text()=" More... "]');
+    this.disable = page.locator('//a[@danphe-grid-action="deactivatePriceCategorySetting"]').nth(0);
+    this.activate = page.locator('//a[@danphe-grid-action="activatePriceCategorySetting"]').first();
+    this.priceCategory = page.locator('//a[@href="#/Settings/PriceCategory"]').nth(1);
   }
 
   /**
@@ -30,6 +30,12 @@ export class SettingsPage {
    */
 
   async verifyDisablePriceCategory() {
+
+    await this.settingsLink.click();
+    await this.more.click();
+    await this.priceCategory.click();
+    await this.disable.click();
+    
   }
 
   /**
@@ -46,5 +52,6 @@ export class SettingsPage {
 
 
   async verifyEnablePriceCategory() {
+
   }
 }

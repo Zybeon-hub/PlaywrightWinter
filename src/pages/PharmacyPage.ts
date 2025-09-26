@@ -10,12 +10,12 @@ export default class PharmacyPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.pharmacy = page.locator('');
-    this.order = page.locator(``);
-    this.export = page.locator(``);
+    this.pharmacy = page.getByRole('link', { name: 'Pharmacy ' });
+    this.order = page.locator(`//a[@href="#/Pharmacy/Order"]`).nth(1);
+    this.export = page.getByTitle(`Export To Excel`);
   }
 
-  
+
   /**
    * This method verifies the functionality of exporting the order section data. It first waits for a brief timeout
    * to ensure that the page elements are fully loaded. Then, it navigates through the pharmacy section and selects
@@ -36,5 +36,15 @@ export default class PharmacyPage {
    */
 
   async verifyExportOrderSectionData() {
+    await this.pharmacy.click()
+    await this.order.click()
+
+    const [download] = await Promise.all([
+      this.page.waitForEvent('download'),
+      await this.export.click()
+    ]);
+    const path = await download.path();
+    this.downloadPath = path;
+    return path;
   }
 }
