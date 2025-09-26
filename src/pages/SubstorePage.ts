@@ -210,10 +210,9 @@ export default class SubstorePage {
     await this.inventoryRequisition.click();
 
     const folder = 'screenshots';
-    const filepath = `${folder}/${'inventory_requisition_section.png'}`;
-    await this.page.screenshot({ path: filepath, fullPage: true });
-    // return filepath;
-    console.log("aaaaaaaaaaaaaaaaa", filepath);
-    return Buffer.alloc(0);
+    const filepath = `${folder}/${'inventory-requisition-section-chromium-win32-chromium-win32.png'}`;
+    const buffer = await this.page.screenshot({ path: filepath });
+    
+    return buffer;
   }
 }

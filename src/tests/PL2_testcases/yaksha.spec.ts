@@ -162,7 +162,7 @@ test.describe("Yaksha", () => {
     await verifyCurrentURL(page, "/Home/Index#/WardSupply/Inventory/Stock");
   });
 
-  test("TS-14 Verify  Capture screenshot of Inventory Requisition section", async ({
+  test.only("TS-14 Verify  Capture screenshot of Inventory Requisition section", async ({
     page,
   }) => {
     const screenshot =
