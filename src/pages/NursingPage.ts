@@ -51,10 +51,10 @@ export default class NursingPage {
 
   async verifyPatientOverviewFromPastDaysRecords(): Promise<void> {
 
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.nursing_tab.click();
     await this.past_days.click();
     await this.from_date.fill("2020-01-01");
@@ -84,10 +84,10 @@ export default class NursingPage {
    * 9. Click on the Submit button.
    */
   async verifyfileupload() {
-const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+// const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.nursing_tab.click();
     await this.page.waitForTimeout(2000)
     await this.past_days.click();

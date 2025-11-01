@@ -42,10 +42,10 @@ export default class LaboratoryPage {
    */
 
   async verifyTableFiltering() {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.laboratoryLink.click();
     await this.sampleCollectionTab.click();
     await this.from_date.fill('2020-01-01');

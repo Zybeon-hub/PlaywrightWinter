@@ -50,10 +50,10 @@ export default class UtilitiesPage {
    */
 
   async verifyWarningPopupForMandatoryFiels() {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.utilities.utilitiesModule.click();
     await this.utilities.schemeRefund.click();
     await this.utilities.counterItem.click();

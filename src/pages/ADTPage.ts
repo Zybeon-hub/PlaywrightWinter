@@ -52,10 +52,10 @@ export default class ADTPage {
    */
 
   async verifyInventorySubModuleNavigation() {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.ADT.ADTLink.click();
     await this.ADT.first_counter.click();
     await this.ADT.admittedPatient.click();

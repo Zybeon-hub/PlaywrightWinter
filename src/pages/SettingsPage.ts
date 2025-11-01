@@ -30,10 +30,10 @@ export class SettingsPage {
    */
 
   async verifyDisablePriceCategory() {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.settingsLink.click();
     await this.more.click();
     await this.priceCategory.click();

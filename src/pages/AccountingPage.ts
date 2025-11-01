@@ -43,10 +43,10 @@ export default class AccountingPage {
    * 3. Trigger the activation process, confirm the activation in the dialog, and finalize the action.
    */
   async verifyActivationLedger() {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.accounting.accountingLink.click();
     await this.page.waitForTimeout(2000)
     await this.accounting.settings.click();
@@ -79,10 +79,10 @@ export default class AccountingPage {
    * @returns {Promise<void>} - This method performs UI actions and does not return a value.
    */
   async verifyDeactivationLedger() {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.accounting.accountingLink.click();
     await this.page.waitForTimeout(2000)
     await this.accounting.settings.click();

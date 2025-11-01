@@ -22,12 +22,7 @@ export default class MaternityPage {
    */
   async getTooltipTextFromStar(): Promise<string | null> {
 
-    // await this.maternity.click();
-    // await this.starIcon.hover();
-    // await this.page.waitForTimeout(4000)
-    // const tooltipText = await this.page.locator('//*[contains(text(),"Remember this Date")]').textContent();
-
-    // console.log('Tooltip Text:eweeeeeeeeeeeeeeeeeeeeeeeeeeeee', tooltipText);
+    
 
     return "";
   }

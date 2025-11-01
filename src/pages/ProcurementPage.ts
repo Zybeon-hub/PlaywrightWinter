@@ -50,10 +50,10 @@ export default class ProcurementPage {
    * before interaction, helping ensure that the process completes smoothly.
    */
   async verifyRequestForQuotationGeneration() {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.procurement.click()
     await this.quotations.click()
     await this.requestForQuotation.click()

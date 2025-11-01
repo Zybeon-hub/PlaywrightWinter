@@ -63,10 +63,10 @@ export default class DispensaryPage {
   */
 
   async verifyAndReturnDispensaryTooltipText(): Promise<string> {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.dispensary.dispensaryLink.click();
     await this.dispensary.dispensaryLink.click();
     await this.page.locator('a').filter({ hasText: 'Main Dispensarydispensary' }).click();

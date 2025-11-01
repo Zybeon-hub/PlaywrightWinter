@@ -55,10 +55,10 @@ export default class SubstorePage {
    * and interacted with, ensuring the functionality of the Ward Supply section.
    */
   async verifySubModulesDisplay() {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.subStoreLink.click();
     await this.accounts.click();
     await this.inventory.click();
@@ -85,6 +85,11 @@ export default class SubstorePage {
    * - Ensure successful navigation to each sub-tab of the "Inventory" tab.
    */
   async verifyNavigationToSubStoreModule() {
+
+    await this.subStoreLink.click();
+    await this.accounts.click();
+    await this.inventory.click();
+    
   }
 
   /**
@@ -99,6 +104,9 @@ export default class SubstorePage {
    * 4. Pause execution for 1 second to ensure the section is ready for interaction.
    */
   async navigateToAccounts() {
+
+    await this.accounts.click();
+    await this.page.waitForTimeout(2000)
   }
 
   /**
@@ -200,10 +208,10 @@ export default class SubstorePage {
    * - Screenshot of the page is captured and saved successfully in the specified folder.
    */
   async captureScreenshotOfInventoryRequisitionSection() {
-    const counter = await this.page.locator("//a[text()='X']");
-    if (counter) {
-      await counter.click();
-    }
+    // const counter = await this.page.locator("//a[text()='X']");
+    // if (counter) {
+    //   await counter.click();
+    // }
     await this.subStoreLink.click();
     await this.accounts.click();
     await this.inventory.click()
